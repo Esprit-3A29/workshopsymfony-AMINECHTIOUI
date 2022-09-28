@@ -1,20 +1,35 @@
 <img src="{{ asset('img/student.png') }}" alt="student">
 <h1>La  liste de formations de la classe {{c1}} dans la salle {{c2}}</h1>
-{% if tab_formations is empty %}
+{% if tab_formations is  empty %}
 <h6 style="color: coral">Pas de formations</h6>
 {% else %}
 {% for i in tab_formations %}
-    {% if i.Description == "theorique"%}
+   {% if i.Description == "theorique"%}
     ref: {{i.ref}} titre: {{i.Titre|upper}} description: {{i.Description}} nb participants
     {{i.nb_participants}}
     Participer :
+   
     {% if i.nb_participants == 0 %}<a href="{{ path('app_reservation') }}">Participer</a>
-    {% else %}complet
+    {% else %}complet     
+   
+    
     {% endif %}
+
+    
     <br>
     {% endif %}
 {% endfor %}
 {% endif %}
 <h5 style="color: blue">Nbr de formations: {{ tab_formations|length }}</h5>
-{% set x =10 %}
-x={{ x }}
+{% set max_nb = 0 %}
+{% for i in tab_formations %}
+  
+     
+      {% set max_nb = max(i.nb_participants,max_nb) %}
+{% endfor %}Nombre de participants maximale={{max_nb}}
+  {% set somme = 0 %}
+      {% for i in tab_formations %}
+           
+           {% set somme = somme + i.nb_participants  %}
+
+{% endfor %}somme des participants={{somme}}

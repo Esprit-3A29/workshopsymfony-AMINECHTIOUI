@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controller;
-
+use App\Repository\StudentRepository   ;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,5 +22,10 @@ class StudentController extends AbstractController
     {
     return new Response("Bonjour mes etudiants !");
     }
-  
+    #[Route('/students', name: 'app_student')]
+    public function liststudent(StudentRepository $repository){
+        $students=$repository->findAll();
+
+        return $this->render("student/liststudent.html.twig",array("tabStudents"=>$students));
+    }
 }

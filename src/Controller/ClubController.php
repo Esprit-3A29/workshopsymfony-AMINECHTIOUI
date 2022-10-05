@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controller;
-
+use App\Repository\ClubRepository ; 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -36,4 +36,12 @@ class ClubController extends AbstractController
     public function reservation(){
         return new  Response("nouvelle page");
 }
+
+#[Route('/afficher', name: 'app_afficher')]
+    public function afficher(ClubRepository $repository)
+    {
+        $clubs= $repository->findall() ; 
+        return $this->render("club/listclub.html.twig",array("tabclub"=>$clubs));
+    }
+
 }

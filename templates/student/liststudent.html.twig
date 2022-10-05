@@ -1,0 +1,13 @@
+<a href="#">+Add<a>
+<br>
+
+{% for s in tabStudents %}
+
+    id: {{s.Nce}}
+    name: {{s.username}}
+    moyenne: {{s.moyenne}}
+    <a href="#">Delete<a>
+    <a href="#">Update<a>
+    <br>
+
+{% endfor %}

@@ -36,7 +36,7 @@ if($form->isSubmitted()){
 $em = $doctrine->getManager();
 $em->persist($class);
 $em->flush();
-return $this->redirectToRoute ("tab_class");
+return $this->redirectToRoute ("app_class");
 
 }
         return $this->renderForm("classroom/add.html.twig",array("formClassroom"=>$form));
@@ -62,6 +62,6 @@ return $this->redirectToRoute("tab_class");
        $em = $doctrine->getManager();
        $em->remove($class);
        $em->flush() ; 
-        return $this->redirectToRoute("tab_class");
+        return $this->redirectToRoute("app_class");
     }
    }

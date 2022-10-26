@@ -29,7 +29,11 @@ class StudentRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
+public function sortbymoyenne()
+{
+    $qb= $this->createQueryBuilder ('x')->orderBy('x.moyenne','DESC');
+    return $qb->getQuery()->getresult();
+}
     public function remove(Student $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
@@ -37,6 +41,11 @@ class StudentRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+    public function topStudent(){
+        $entityManager=$this->getEntityManager();
+        $query=$entityManager->createQuery("SELECT s FROM APP\Entity\Student s WHERE s.moyenne >= 15");
+        return $query->getResult();
     }
 
 //    /**
